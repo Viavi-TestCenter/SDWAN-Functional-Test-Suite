@@ -6,3 +6,5 @@ genie
 jinja2
 stcrestclient
 robotframework
+requests
+requests_toolbelt
