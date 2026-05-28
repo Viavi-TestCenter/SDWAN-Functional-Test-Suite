@@ -1,7 +1,7 @@
 SD-WAN Functional Test Suite [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 =====================
 
-SD-WAN Functional Test Suite is bundle of automation-oriented test capabilities aimed at providing an end-to-end SD-WAN solution relying on feature rich Spirent products. Test Suite development is based on open source projects including PyATS, Genie, and the Robot Framework allowing users to easily configure and execute SD-WAN test capabilities using this suite. Declarative configuration of testbed topology and test equipment parameters in YAML files models testbed objects such as devices and their interfaces intuitively as Python objects. This eliminates costly development and setup times as well as enables reliable and easy-to-interpret results to be produced.
+SD-WAN Functional Test Suite is bundle of automation-oriented test capabilities aimed at providing an end-to-end SD-WAN solution relying on feature rich VIAVI products. Test Suite development is based on open source projects including PyATS, Genie, and the Robot Framework allowing users to easily configure and execute SD-WAN test capabilities using this suite. Declarative configuration of testbed topology and test equipment parameters in YAML files models testbed objects such as devices and their interfaces intuitively as Python objects. This eliminates costly development and setup times as well as enables reliable and easy-to-interpret results to be produced.
 
 ## Table of Contents
 - [Installation](#Installation)
@@ -34,7 +34,7 @@ The steps below are specific to setup on an Ubuntu 18.04 LTS or Windows Subsyste
 2. Clone the SD-WAN Test Suite repository from Git and cd to that repository root folder.
 
     ```
-    git clone https://github.com/Spirent/SDWAN-Functional-Test-Suite.git
+    git clone https://github.com/VIAVI-TestCenter/SDWAN-Functional-Test-Suite.git
 
     cd ~/SDWAN-Functional-Test-Suite
     ```
@@ -56,21 +56,21 @@ The steps below are specific to setup on an Ubuntu 18.04 LTS or Windows Subsyste
     export PYTHONPATH=~/SDWAN-Functional-Test-Suite/
     ```
 
-4. Install the Spirent Testpack framework, SD-WAN Test Suite, and additional dependencies that are needed to execute the tests.
+4. Install the VIAVI Testpack framework, SD-WAN Test Suite, and additional dependencies that are needed to execute the tests.
 
     Install wheel as required for pip package installations
     ```
     pip install wheel
     ```
 
-    Install the Spirent Testpack Framework source
+    Install the VIAVI Testpack Framework source
     ```
-    pip install -t test_framework spirent-testpack-framework
+    pip install -t test_framework viavi-testpack-framework
     ```
 
-    Install the Spirent SD-WAN Test Suite
+    Install the VIAVI SD-WAN Test Suite
     ```
-    pip install -t testpacks spirent-sdwan-test-suite
+    pip install -t testpacks viavi-sdwan-test-suite
     ```
 
     Install additional required dependencies such as pyATS, Unicon, Genie, Jinja2, Stcrestclient, and Robotframework.  
@@ -101,7 +101,7 @@ Before test execution, follow these steps.
 
 2. A mapping file `testpacks/sd-wan/testbed_lab/testbed_map.py` is provided that maps individual test case id's to specific testbed sections within the physical testbed configuration file in Step 3. Find the appropriate testbed section that maps to the test case Id from within the mapping file.
 
-3. Once you have identified the physical testbed section that maps to your test case, you must edit that section with configuration details specific to your lab. This section can be found in a single configuration file `testpacks/sd-wan/testbed_lab/configuration.yaml` which houses configuration for all testbeds. Several other Spirent TestCenter configuration parameters are also exposed, if you need to override the defaults.
+3. Once you have identified the physical testbed section that maps to your test case, you must edit that section with configuration details specific to your lab. This section can be found in a single configuration file `testpacks/sd-wan/testbed_lab/configuration.yaml` which houses configuration for all testbeds. Several other VIAVI TestCenter configuration parameters are also exposed, if you need to override the defaults.
 
 4. For SD-WAN scripts there is no DUT configuration in the test script. You must configure the DUT manually before running the test. The gateway address of the emulated devices is the same as with DUT interface IP address.
 
@@ -111,11 +111,11 @@ Before test execution, follow these steps.
 
     > **Step2:** In the testpacks/sd-wan/testbed_lab/testbed_map.py file, you will find that for test case id sd-wan.path_selection.002, the physical testbed information being used is 3stc_1dut_type01_testbed02.
 
-    > **Step3:** Find the physical testbed section referenced in Step#2 ("3stc_1dut_type01_testbed02") in the following file testpacks/sd-wan/testbed_lab/configuration.yaml and update it with appropriate values for your lab. Note that it uses chassis_1, chassis_2, chassis_3, ls_1. You must modify the IPv4 address under stc1, stc2, stc3, spirent_lab_server_1, and the slot/port number under chassis_1, chassis_2 and chassis_3.
+    > **Step3:** Find the physical testbed section referenced in Step#2 ("3stc_1dut_type01_testbed02") in the following file testpacks/sd-wan/testbed_lab/configuration.yaml and update it with appropriate values for your lab. Note that it uses chassis_1, chassis_2, chassis_3, ls_1. You must modify the IPv4 address under stc1, stc2, stc3, viavi_lab_server_1, and the slot/port number under chassis_1, chassis_2 and chassis_3.
 
     > **Step4:** Check the gateway address of emulated_devices under 3stc_1dut_type01_testbed02, which should be the same as the interfaces ip address on the DUT. If they are different, modify the gateway or change the DUT interface ip.
 
-For additional details about each test case, please refer to the [TestPack Specification Document](Spirent%20SD-WAN%20Functional%20Test%20Suite%20Specification.pdf). All test cases are explained under their unique Test Case ID in the document.
+For additional details about each test case, please refer to the [TestPack Specification Document](VIAVI%20SD-WAN%20Functional%20Test%20Suite%20Specification.pdf). All test cases are explained under their unique Test Case ID in the document.
 
 
 ## Test Execution
@@ -156,7 +156,7 @@ Output files are configured using robot command line options.
 
 In section:[Test Execution](#Test-Execution), `-d testrun` specifies the results directory as **testrun**.
 
-Test execution will generate several reports/logs, for example Robot report files, test script logs, and Spirent TestCenter logs.
+Test execution will generate several reports/logs, for example Robot report files, test script logs, and VIAVI TestCenter logs.
 
 1. Robot report files:   
    `report.html`, `log.html` and `output.xml` files are typically generated.  
@@ -171,8 +171,8 @@ Test execution will generate several reports/logs, for example Robot report file
 2. Test script logs:  
    `test.log.json` under `testrun/sd-wan.path_selection.002` contains the test script execution logs.
 
-3. Spirent TestCenter logs:  
-   There are Spirent TestCenter BLL/IL and configuration logs under `testrun/sd-wan.path_selection.002`.  
+3. VIAVI TestCenter logs:  
+   There are VIAVI TestCenter BLL/IL and configuration logs under `testrun/sd-wan.path_selection.002`.  
 
 
 ## Folder Structure and Naming
@@ -186,18 +186,18 @@ Test execution will generate several reports/logs, for example Robot report file
 
     Every test case is accompanied by metadata, see example `testpacks/sd-wan/path_selection_application_aware_steering.yaml`.
 
-    Each testpack has a specification to describe the test cases. See example in the [TestPack Specification](Spirent%20SD-WAN%20Functional%20Test%20Suite%20Specification.pdf) document.
+    Each testpack has a specification to describe the test cases. See example in the [TestPack Specification](VIAVI%20SD-WAN%20Functional%20Test%20Suite%20Specification.pdf) document.
 
 3. The **testbed_templates** folder is for the logical testbed template. See example: `testpacks/sd-wan/testbed_templates/3stc_1dut_type01.yaml`, which gets the information from the physical lab configuration and generates the final configuration file used by the test script.
 
 4. The **testbed_lab** folder is used for the physical configuration and the mapping file. See example: `testpacks/sd-wan/testbed_lab/testbed_map.py`, which defines the mapping for each test case id to a specific testbed section in physical configuration file `testpacks/sd-wan/testbed_lab/configuration.yaml`. The physical configuration is a single file to be supplied by the end user that contains complete details of their lab equipment, along with how they are interconnected into testbeds.
 
-5. The script **test_framework/script/check_stc_param.py** is used to get the Spirent TestCenter port parameters values(phy and speed). When you edit the port 'phy' and 'speed' in physical lab configuration, you can find their values via this script:
+5. The script **test_framework/script/check_stc_param.py** is used to get the VIAVI TestCenter port parameters values(phy and speed). When you edit the port 'phy' and 'speed' in physical lab configuration, you can find their values via this script:
 `python script/check_stc_param.py -l <lab server ip> -c <chassis ip> -s <slot number> -p <port number>`
 
 
 ## Support
-If you encounter any issues during installation or test execution, have general questions, or feedback around new features, please open an issue on our Github repository. You can also reach the development team via email testpack@spirent.com.
+If you encounter any issues during installation or test execution, have general questions, or feedback around new features, please open an issue on our Github repository. You can also reach the development team via email BDCandIDC-Automation@viavisolutions.com.
 
 
 ## License
